@@ -4,7 +4,7 @@
 >
 <h:head />
 <h:body>
-    <h2>Studentai grupeje "#{not empty grupes.grupesStudentai ? grupes.grupesStudentai[0].grupe.pavadinimas : ''}":</h2>
+    <h2>Studentai esantys grupeje "#{not empty grupes.grupesStudentai ? grupes.grupesStudentai[0].grupe.pavadinimas : ''}":</h2>
     <ol>
         <ui:repeat value="#{grupes.grupesStudentai}" var="studentas">
             <li>

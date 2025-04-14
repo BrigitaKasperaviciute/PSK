@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head/>
+<h:body>
+    <h2>Studentai:</h2>
+    <ol>
+        <ui:repeat value="#{studentai.visiStudentai}" var="studentas">
+            <li>
+                <h:link value="#{studentas.vardas}" outcome="pasirenkamiejiDalykai">
+                    <f:param name="studentasId" value="#{studentas.id}" />
+                </h:link>
+                <h:outputText value=" " />
+                <h:link value="#{studentas.grupe.pavadinimas}" outcome="grupe">
+                    <f:param name="grupeId" value="#{studentas.grupe.id}" />
+                </h:link>
+            </li>
+        </ui:repeat>
+    </ol>
+    <h3>Nauja grupė</h3>
+    <h:form>
+        <h:inputText value="#{grupes.naujaGrupe.pavadinimas}" placeholder="Pavadinimas"/>
+        <h:commandButton value="Pridėti" actionListener="#{grupes.createGrupe()}"
+                         action="index?faces-redirect=true"/>
+    </h:form>
+
+    <h3>Naujas pasirenkamasis dalykas</h3>
+    <h:form>
+        <h:inputText value="#{pasirenkamiejiDalykai.sukuriamasPasirenkamasisDalykas.pavadinimas}" placeholder="Pavadinimas"/>
+        <h:commandButton value="Pridėti" actionListener="#{pasirenkamiejiDalykai.createPasirenkamasisDalykas()}"
+                         action="index?faces-redirect=true"/>
+    </h:form>
+
+    <h3>Pridėti Studentą</h3>
+    <h:form>
+        <h:inputText value="#{studentai.sukuriamasStudentasDTO.vardas}" placeholder="Vardas"/>
+
+        <h:selectOneMenu value="#{studentai.sukuriamasStudentasDTO.grupeId}" required="true">
+            <f:selectItems value="#{grupes.visosGrupes}" var="grupe"
+                           itemValue="#{grupe.id}" itemLabel="#{grupe.pavadinimas}"/>
+        </h:selectOneMenu>
+
+        <h:commandButton value="Pridėti" actionListener="#{studentai.sukurtiStudenta()}"
+                         action="index?faces-redirect=true"/>
+    </h:form>
+</h:body>
+</html>

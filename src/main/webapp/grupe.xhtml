@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head />
+<h:body>
+    <h2>Studentai grupeje "#{not empty grupes.grupesStudentai ? grupes.grupesStudentai[0].grupe.pavadinimas : ''}":</h2>
+    <ol>
+        <ui:repeat value="#{grupes.grupesStudentai}" var="studentas">
+            <li>
+                <h:link value="#{studentas.vardas}" outcome="pasirenkamiejiDalykai?studentasId=#{studentas.id}"/>
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:link outcome="index" value="Grįžti į studentų puslapį"/>
+</h:body>
+</html>
